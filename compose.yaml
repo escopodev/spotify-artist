@@ -1,0 +1,23 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: unless-stopped
+    tty: true
+    environment:
+      POSTGRES_DB: spotify
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 4321
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - net
+networks:
+  net:
+    driver: bridge
+volumes:
+  db:
+    driver: local
